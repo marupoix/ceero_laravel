@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router, usePage } from '@inertiajs/react';
 import { useState } from "react";
-import {AddProductModal} from '@/components/product-modal';
+import { ProductModal } from '@/components/product-modal';
 
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -87,7 +87,7 @@ export default function Products() {
                     </div>
                 </div>
             </div>
-            <AddProductModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} product={selectedProduct}  />
+            <ProductModal isOpen={isModalOpen} closeModal={() => setIsModalOpen(false)} product={selectedProduct}  />
         </AppLayout>
     );
 }

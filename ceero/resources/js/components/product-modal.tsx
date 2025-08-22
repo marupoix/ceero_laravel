@@ -17,7 +17,7 @@ interface Props {
 }
 
 
-export function AddProductModal({isOpen, closeModal, product }: Props) {
+export function ProductModal({isOpen, closeModal, product }: Props) {
     const [formData, setFormData] = useState<Product>({ image: '', name: '', price: 0, availability: '' });
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [preview, setPreview] = useState<string>("");
