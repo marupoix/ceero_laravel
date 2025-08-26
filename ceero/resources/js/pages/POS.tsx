@@ -33,14 +33,14 @@ export default function POS() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="POS" />
-            <div className="flex flex-1 gap-4 rounded-xl p-4">
+            <div className="md:flex flex-1 gap-4 rounded-xl p-4 overflow-x-auto">
                 <div className="relative flex-2 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                     <div
-                        className='grid grid-cols-3 gap-5 p-5 overflow-y-auto h-[88vh]'
+                        className='grid md:grid-cols-3 gap-5 p-5 overflow-y-auto h-[88vh]'
                     >
                         {pos.length ? (
                             pos.map((product) => (
-                                <div key={product.id} className='bg-slate-700/50 py-3 rounded-lg'>
+                                <div key={product.id} className='bg-slate-700/50 py-3 rounded-lg h-fit'>
                                     <div className='px-4 py-1 '>
                                         {product.image ? (
                                             <img className='w-60 h-50 object-cover rounded-t-lg' src={product.image} alt={product.name} />

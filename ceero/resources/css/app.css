@@ -163,3 +163,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(68, 68, 68); 
 }
+
+button:hover {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}

@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Sale; 
+use Illuminate\Http\Request;
 
-
-class POSController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('POS', [
-            'pos' => Products::all()
+        $recentSales = Sale::with('products') // Eager load products
+            ->latest()
+            ->take(10)
+            ->get();
+
+        return Inertia::render('dashboard', [
+            'recentSales' => $recentSales
         ]);
     }
 
