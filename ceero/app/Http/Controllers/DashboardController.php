@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Sale; 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -13,13 +14,28 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $recentSales = Sale::with('products') // Eager load products
+        // Recent sales with products
+        $recentSales = Sale::with('products')
             ->latest()
             ->take(10)
             ->get();
 
+        // Daily Sales
+        $todaySales = Sale::whereDate('created_at', Carbon::today())->sum('total');
+
+        // Daily Total Customers
+        $todayCustomers = Sale::whereDate('created_at', Carbon::today())->count();
+
+        // Monthly Sales
+        $monthlySales = Sale::whereMonth('created_at', Carbon::now()->month)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->sum('total');
+
         return Inertia::render('dashboard', [
-            'recentSales' => $recentSales
+            'recentSales' => $recentSales,
+            'todaySales' => $todaySales,
+            'todayCustomers' => $todayCustomers,
+            'monthlySales' => $monthlySales,
         ]);
     }
 
